@@ -1,8 +1,11 @@
 #include <stdlib.h>
 #include <stdio.h>
+#include <math.h>
+
+int Zool(int a, char b, char c) {
+}
 
 int main(void) {
-    const double PI  = 3.14159;
-
-    printf("Hello World!");
+    Zool(11, 'a', 'b');
 }
+

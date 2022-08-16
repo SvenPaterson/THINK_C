@@ -14,11 +14,21 @@ where r is the remainder when a is divided by b
 
 int GreatestCommonDenom(int a, int b)
 {
-    return 1;
+    printf("\na: %i, b: %i", a, b);
+
+    if (b != 0)
+    {
+        return GreatestCommonDenom(b, a % b);
+    }
+
+    else 
+    {
+        return a;
+    }
 }
 
 int main(void)
 {
-    printf("The output of GreatestCommonDenom is: %i", GreatestCommonDenom(36, 20));
+    printf("\nThe output of GreatestCommonDenom is: %i", GreatestCommonDenom(97, 36));
     return (EXIT_SUCCESS);
 }

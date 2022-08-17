@@ -44,7 +44,7 @@ int main(void)
 
     int m = 3;
     int n = 7;
-    int run_which_func = 1;
+    int run_which_func = ;
 
     if (run_which_func == 1)
     {

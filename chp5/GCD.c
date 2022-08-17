@@ -29,6 +29,9 @@ int GreatestCommonDenom(int a, int b)
 
 int main(void)
 {
-    printf("\nThe output of GreatestCommonDenom is: %i", GreatestCommonDenom(97, 36));
+    int a = 50;
+    int b = 120;
+    printf("\nThe output of GreatestCommonDenom(%i, %i) is: ", a, b);
+    printf("\nGCD: %i", GreatestCommonDenom(a, b));
     return (EXIT_SUCCESS);
 }

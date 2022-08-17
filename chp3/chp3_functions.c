@@ -10,19 +10,20 @@ void PrintDateEuropean(int day, int month, int year) {
     printf("%i/%i/%i\n", day, month, year);
 }
 
-void Multadd(double a, double b, double c) {
-    printf("%.6f\n", a+b+c);
+double Multadd(double a, double b, double c) {
+    return (a + b + c);
 }
 
-void Yikes(double x) {
+double Yikes(double x) {
     double y = exp(-x);
-    Multadd(x * y, sqrt(1-y), 0.0);
+    return Multadd(x * y, sqrt(1-y), 0.0);
 }
 
 int main(void) {
     PrintDateAmerican(22,8,2022);
     PrintDateEuropean(22,8,2022);
-    Multadd(sin(acos(-1)/4), cos(acos(-1)/4)/2, 0.0);
-    Yikes(3.0);
+    double res = Multadd(sin(acos(-1)/4), cos(acos(-1)/4)/2, 0.0);
+    printf("Multadd(sin(acos(-1)/4), cos(acos(-1)/4)/2, 0.0): %.3f\n", res);
+    printf("Yikes(3.0): %.3f\n", Yikes(3.0));
 }
 

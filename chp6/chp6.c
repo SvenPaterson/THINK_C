@@ -65,20 +65,43 @@ double Power(double x, int n)
 
 double Square_Root(double a)
 {
-    int i = 1;
-    double old_guess = a / 2.0; // initial guess
-    double new_guess, res = a;
+    double x0 = a / 2.0;         // initial guess
+    double x1 = a;
 
-    while (i < 15)
+    while (fabs(x1-x0) > 0.0001) // loop until guess is accurate enough
     {   
-        printf("Abs value of diff: %.06f", fabs(new_guess-old_guess));
-        // needs work...
-        printf("\n%.04f\n", res);
-        new_guess = (old_guess + a/old_guess)/2.0;
-        i += 1;
+        x0 = x1;                 // prev guess becomes old guess
+        x1 = (x0 + a/x0) / 2.0;  // new guess is calculated
+        printf("\nAbs value of diff: %.05f", fabs(x1-x0));
     }
 
-    return new_guess;
+    return x1;
+}
+
+double Gauss(double x, int n)
+{
+    /* 
+
+    Function evaluates e^(-x^2) using the infinite series expansion:
+       
+        e^(-x^2) = 
+
+            1 - 2x + (3x^2)/2! - (4x^3)/3! + ... + (((-1)^i)(i+1)(x^i))/i!
+
+    to the nth term.
+
+    NOT allowed to use functions Pow or Factorial...
+    */
+    double result = 1;
+    int i = 1;
+
+    while (i < n)
+        {
+        printf("i: %i, result: %.04f\n", i, result);
+        i += 1;
+        
+        }
+   
 }
 
 
@@ -87,6 +110,7 @@ int main(void)
     //PrintPowersOfTwoTable();
     //PrintMultTable(10);
     //Loop(10);
-    printf("\n%.04f", Square_Root(2947.957));
+    //printf("\n%.04f", Square_Root(2573958964947.957));
+    Gauss(1.0, 10);
     return EXIT_SUCCESS;
 }

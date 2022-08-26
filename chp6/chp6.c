@@ -81,27 +81,33 @@ double Square_Root(double a)
 double Gauss(double x, int n)
 {
     /* 
-
     Function evaluates e^(-x^2) using the infinite series expansion:
        
         e^(-x^2) = 
 
             1 - 2x + (3x^2)/2! - (4x^3)/3! + ... + (((-1)^i)(i+1)(x^i))/i!
-
     to the nth term.
+
+            ith term:   (((-1)^i)(i+1)(x^i))/i! is equivalent to:
+                        (i+1)       *       (-x^i)      /       i!
+                        a           *       b           /       c
 
     NOT allowed to use functions Pow or Factorial...
     */
-    double result = 1;
-    int i = 1;
-
-    while (i < n)
-        {
-        printf("i: %i, result: %.04f\n", i, result);
-        i += 1;
-        
-        }
    
+    double a = 1.0;
+    double b = 1.0;
+    double c = 1.0;
+    double result = 1.0;
+
+    while (a < n+1)
+        {
+        c *= a;
+        b *= -x;
+        result += a*b/c;
+        a++;
+        }
+    return result;
 }
 
 
@@ -111,6 +117,8 @@ int main(void)
     //PrintMultTable(10);
     //Loop(10);
     //printf("\n%.04f", Square_Root(2573958964947.957));
-    Gauss(1.0, 10);
+    double x = 2.0;
+    int n = 10;
+    printf("Gaussian Expansion of %.4f to %ith term: %.4f", x, n, Gauss(2.0, 10));
     return EXIT_SUCCESS;
 }

@@ -3,6 +3,7 @@
 #include <string.h>
 #include <math.h>
 #include <time.h>
+#include <ctype.h>
 
 
 void PrintBackwards(char *word)
@@ -25,7 +26,7 @@ void PrintArray(float array[], int length)
     printf("\n");
 }
 
-float Q_rsqrt( float number )
+float Q_rsqrt(float number)
 {
     long i;
     float x2, y;
@@ -33,11 +34,11 @@ float Q_rsqrt( float number )
 
     x2 = number * 0.5F;
     y = number;
-    i = * ( long * ) &y;
-    i = 0x5f3759df - ( i >> 1 );
-    y = * ( float * ) &i;
-    y = y * ( threehalves - ( x2 * y * y ) );
-    //y = y * ( threehalves - ( x2 * y * y ) );
+    i = *(long*) &y;
+    i = 0x5f3759df - (i >> 1);
+    y = *(float*) &i;
+    y = y * (threehalves - (x2 * y * y));
+    //y = y * (threehalves - (x2 * y * y));
 
     return y;
 }
@@ -57,26 +58,42 @@ void RandomizeArray(float array[], int length, int lowerBound, int upperBound)
     /* Will pass randomized values to array parameter, inclusive of the lower
     bound and exclusive of the upper bound */
     srand(time(NULL));
-    for(int i = 0; i < length; i++)
+    for (int i = 0; i < length; i++)
     {
         array[i] = RandomFloat(lowerBound, upperBound);
     }
 }
 
+char StringToUpper(char *str, int str_len)
+{
+    for (int i = 0; i < str_len; i++)
+    {
+        if (isalpha(str[i]))
+        {
+            str[i] = toupper(str[i]);
+        }
+    }
+}
+
+char StringToLower(char *str, int str_len)
+{
+    for (int i = 0; i < str_len; i++)
+    {
+        if (isalpha(str[i]))
+        {
+            str[i] = tolower(str[i]);
+        }
+    }
+}
 
 int main(void){
 
-    int array_len = 500000;
-    float array[array_len];
-    RandomizeArray(array, array_len, 1, 100);
-    //PrintArray(array, array_len);
-    
-    for (int i = 0; i < array_len; i++)
-    {
-        //array[i] = 1.0 / sqrt(array[i]);
-        array[i] = Q_rsqrt(array[i]);
-    }
-    
-    //PrintArray(array, array_len);
+    char greeting[] = "Stephen Garden";
+    printf("%s\n", greeting);
+    StringToUpper(greeting, 15);
+    printf("%s\n", greeting);
+    StringToLower(greeting, 15);
+    printf("%s\n", greeting);
+
     return EXIT_SUCCESS;
 }
